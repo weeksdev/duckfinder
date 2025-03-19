@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- The Mac App Store requires you specify if the app uses encryption. -->
+    <!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/itsappusesnonexemptencryption -->
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+
+    <!-- Specify the category for your app here. -->
+    <!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/lsapplicationcategorytype -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+    
+    <!-- File access usage descriptions -->
+    <key>NSFileProviderDomainUsageDescription</key>
+    <string>DuckFinder needs access to browse your files</string>
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>DuckFinder needs access to browse your Desktop folder</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>DuckFinder needs access to browse your Documents folder</string>
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>DuckFinder needs access to browse your Downloads folder</string>
+    <key>NSRemovableVolumesUsageDescription</key>
+    <string>DuckFinder needs access to browse removable volumes</string>
+    <key>NSFileProviderPresenceUsageDescription</key>
+    <string>DuckFinder needs access to browse your files</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/appicon.appiconset</string>
+</dict>
+</plist>

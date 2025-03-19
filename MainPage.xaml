@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DuckFinder.MainPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="MainContentPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Path Display and Navigation Controls -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="10" Padding="10">
+            <Button Text="←" x:Name="BackButton" Clicked="OnBackClicked"/>
+            <Label x:Name="PathLabel" VerticalOptions="Center"
+                   FontSize="16" FontAttributes="Bold"/>
+            <Button Text="📋" Clicked="OnCopyPathClicked"
+                    ToolTipProperties.Text="Copy path to clipboard"/>
+        </HorizontalStackLayout>
+
+        <!-- Split View -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar -->
+            <CollectionView Grid.Column="0" x:Name="SidebarView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSidebarSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" Padding="10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Main File List -->
+            <CollectionView Grid.Column="1" x:Name="FileListView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnFileSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Spacing="10" Padding="20">
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OnItemDoubleTapped"/>
+                            </HorizontalStackLayout.GestureRecognizers>
+                            <Image Source="{Binding Icon}" WidthRequest="32" HeightRequest="32"/>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- Terminal View -->
+        <Border Grid.Row="2" Stroke="#CCCCCC" StrokeThickness="1" Margin="5">
+            <Grid BackgroundColor="#1E1E1E">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <ScrollView x:Name="TerminalScrollView" Grid.Row="0">
+                    <VerticalStackLayout x:Name="TerminalOutput" Padding="10" Spacing="2"/>
+                </ScrollView>
+                
+                <Entry x:Name="TerminalInput" Grid.Row="1"
+                       Margin="10,5"
+                       Placeholder="$"
+                       PlaceholderColor="#666666"
+                       TextColor="White"
+                       BackgroundColor="Transparent"
+                       FontFamily="Menlo"
+                       FontSize="14"
+                       ReturnCommand="{Binding Source={x:Reference MainContentPage}, Path=TerminalReturnCommand}"
+                       ClearButtonVisibility="WhileEditing"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
