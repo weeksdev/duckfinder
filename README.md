@@ -20,7 +20,7 @@ DuckFinder is a modern, enhanced file explorer application built exclusively for
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/DuckFinder.git
+   git clone https://github.com/weeksdev/DuckFinder.git
    cd DuckFinder
    ```
 
