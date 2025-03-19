@@ -28,4 +28,4 @@ jobs:
       run: dotnet build DuckFinder.sln -f net9.0-maccatalyst -r maccatalyst-x64 -r maccatalyst-arm64 --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test DuckFinder.sln --no-build --verbosity normal
+      run: dotnet test DuckFinder.sln -f net9.0-maccatalyst --no-build --verbosity normal

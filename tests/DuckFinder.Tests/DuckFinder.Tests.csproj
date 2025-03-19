@@ -1,22 +1,49 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-maccatalyst18.2</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ApplicationId>com.companyname.duckfinder.tests</ApplicationId>
+    <RuntimeIdentifier>maccatalyst-x64</RuntimeIdentifier>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)</IntermediateOutputPath>
+    <EnableTargetFrameworkMonikerResolution>true</EnableTargetFrameworkMonikerResolution>
+    <SelfContained>true</SelfContained>
   </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.MacCatalyst" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="3.2.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.14" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.14" />
   </ItemGroup>
 
+  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
+    <CodesignEntitlements>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DuckFinder\DuckFinder.csproj" />
+    <ProjectReference Include="..\..\src\DuckFinder\DuckFinder.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
+
+
 
 </Project>
